@@ -4,10 +4,11 @@ from rich.panel import Panel
 # from rich.rule import Rule
 
 # from src.prompts.json_mode import run_json_mode
-from src.prompts.news_extractor import run_news_extractor
+# from src.prompts.news_extractor import run_news_extractor
 # from src.prompts.zero_few_shot import run_zero_few_shot
 # from src.prompts.cot_prompts import run_chain_of_thought
 # from src.prompts.prompt_template import run_prompt_templates
+from src.prompts.function_calling import run_chat_with_tools
 
 console = Console()
 
@@ -21,7 +22,12 @@ def main():
     # run_chain_of_thought()
     # run_prompt_templates()
     # run_json_mode()
-    run_news_extractor()
+    # run_news_extractor()
+    run_chat_with_tools("¿Cuál es el clima en La Guaira en grados celsius?")
+    # run_chat_with_tools("¿Cuál es el clima en Mexico City en grados fahrenheit?")
+    # run_chat_with_tools("¿Cuál es el clima en Madrid en grados celsius?")
+    run_chat_with_tools("¿Cual es la capital de España?")
+
     console.print("\n[bold green] Ejecucion terminada!\n")
 
 if __name__ == "__main__":
