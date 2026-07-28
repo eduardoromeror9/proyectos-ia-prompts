@@ -23,10 +23,13 @@ def main():
     # run_prompt_templates()
     # run_json_mode()
     # run_news_extractor()
-    run_chat_with_tools("¿Cuál es el clima en La Guaira en grados celsius?")
-    # run_chat_with_tools("¿Cuál es el clima en Mexico City en grados fahrenheit?")
-    # run_chat_with_tools("¿Cuál es el clima en Madrid en grados celsius?")
-    run_chat_with_tools("¿Cual es la capital de España?")
+    run_chat_with_tools(input("De que ciudad quieres saber el clima?: "))
+    # run_chat_with_tools("¿Cuál es el clima en La Guaira?")
+    # run_chat_with_tools("¿Cuál es el clima en Madrid?")
+    # run_chat_with_tools("¿Cuál es el clima en London?")
+    # run_chat_with_tools("¿Cuál es el clima en Santiago?")
+    # run_chat_with_tools("¿Cuál es el clima en Buenos Aires?")
+
 
     console.print("\n[bold green] Ejecucion terminada!\n")
 

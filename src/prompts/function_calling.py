@@ -1,5 +1,6 @@
 import json
 from src.helpers.ia_client import call_ai_tools
+from src.services.weather_service import WeatherService
 
 TOOLS = [
     {
@@ -29,25 +30,29 @@ TOOLS = [
 def get_weather(city: str, unit: str = "celsius") -> dict:
     """Obtener clima"""
 
-    simulated_data = {
-        "Madrid": {"temperature": 18, "wind_speed": 10.2},
-        "Mexico City": {"temperature": 22, "wind_speed": 1.0},
-        "La Guaira": {"temperature": 12, "wind_speed": 2.0},
-    }
+    # simulated_data = {
+    #     "Madrid": {"temperature": 18, "wind_speed": 10.2},
+    #     "Mexico City": {"temperature": 22, "wind_speed": 1.0},
+    #     "La Guaira": {"temperature": 12, "wind_speed": 2.0},
+    # }
 
-    city_lower = city.lower()
-    weather_data = simulated_data.get(
-        city_lower,
-        {"temperature": 20, "wind_speed": 1.0}
-    )
+    # city_lower = city.lower()
+    # weather_data = simulated_data.get(
+    #     city_lower,
+    #     {"temperature": 20, "wind_speed": 1.0}
+    # )
+    weather_service = WeatherService()
+    weather = weather_service.get_current_weather_by_city(city)
+    # print(weather["temperature"])
 
-    temp = weather_data["temperature"]
+
+    temp = weather["temperature"]
     if unit == "fahrenheit":
         temp = (temp * 9/5) + 32
     return {
         "city": city,
         "temperature": f"{temp}°{"C" if unit == "celsius" else "F"}",
-        "wind_speed": f"{weather_data.get('wind_speed', 0)} km/h"
+        "windspeed": f"{weather.get('windspeed', 0)} km/h"
     }
 
 def execute_tool(name: str, arguments: dict) -> str:
