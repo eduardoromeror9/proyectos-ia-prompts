@@ -13,8 +13,9 @@ __pycache__/
 dist/
 build/
 
+# Datos generados (bases vectoriales) y contenido privado
+data/chromadb/
 data/private/
 
 .vscode/settings.json
 .idea/
-EOF
