@@ -34,7 +34,45 @@ def cosine_similarity(vector_a: list[float], vector_b: list[float]) -> float:
     
     return dot_product / (magnitude_a * magnitude_b)
 
+def demostrate_semantic_similarity():
+    """Muestra la similitud del significado"""
 
+    # Pregunta
+    # base_phrase = "¿Cómo puedo reiniciar el servidor?" # Se puede cambiar por un input()
+    base_phrase = (input("Ingresa tu pregunta: "))
+
+    # Documentos
+    candidates = [
+        "Para reiniciar el servidor ejecuta: sudo systemctl restart nginx", 
+        "Puedes reboot el proceso con el comando service stop/start",       
+        "The server restart procedure is documented in section 4.2",         
+        "La pizza margarita lleva tomate, mozzarella y albahaca",           
+        "Los gatos domésticos duermen un promedio de 16 horas al día",       
+        "Para apagar el servidor usa: sudo shutdown -h now",                
+    ]
+
+    print("Calculando embeddings...")
+    base_embedding = get_embedding(base_phrase) 
+    results = []
+
+    for phrase in candidates:
+        candidate_embedding = get_embedding(phrase)
+        similarity = cosine_similarity(base_embedding, candidate_embedding)
+        results.append((similarity, phrase))
+
+    results.sort(reverse=True) 
+    
+    print(f"Pregunta: {base_phrase}\n")
+
+    print("\nResultados (más relevantes primero):")
+    print("="*40)
+
+    for similarity, phrase in results:
+        bar = "#" * int(similarity * 30)
+        relevance = "RELEVANTE" if similarity > 0.5 else "IRRELEVANTE"
+        
+        print(f"{similarity:.3f} | {bar}")
+        print(f"{relevance}: {phrase[:60]}...")
 
 
 if __name__ == "__main__":
@@ -42,8 +80,10 @@ if __name__ == "__main__":
     print("         Búsqueda por vector")
     print("="*40)
 
-    embeddin_vector = get_embedding("Elefante")
-    embeddin_vector_b = get_embedding("Pelota")
+    demostrate_semantic_similarity()
 
-    similarity = cosine_similarity(embeddin_vector, embeddin_vector_b)
-    print(f"Similitud: {similarity:} ")
+    # embeddin_vector = get_embedding("Elefante")
+    # embeddin_vector_b = get_embedding("Pelota")
+    
+    # similarity = cosine_similarity(embeddin_vector, embeddin_vector_b)
+    # print(f"Similitud: {similarity} ")
