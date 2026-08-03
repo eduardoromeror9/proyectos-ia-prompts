@@ -168,6 +168,10 @@ if __name__ == "__main__":
 
     # Buscar respuestas similares a una pregunta
     test_questions = [
+        # "¿Cómo reinicio el servidor web?",
+        # "¿Dónde están las credenciales de la base de datos?",
+        # "¿Cómo hago deploy a producción?",
+        # "¿Qué pasa si hago demasiadas llamadas a la API?",
         "Mi web app dejó de responder",
         "Olvidé dónde guardamos los passwords",
         "Quiero publicar mi código en vivo",
